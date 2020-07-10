@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,34 +35,5 @@ namespace SuperMarket.API.Controllers
             })
             .ToArray();
         }
-        [HttpPost]
-        public IActionResult Import()
-        {
-            using (var client = new System.Net.Http.HttpClient())
-            {
-                // Choose json or xml format that is more suitable for your project
-                // Alternatively API token can be supplied in Authorization Header instead of being part of URL
-                // e.g. client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Engage", "7JK_GPoJc_IDML7XFsuwtvnMaTV1m9XQDQQ4D15CX9i1VgLMcoXqZ94nlwvHoj76EE30PK0lIs6jE1Mik2SyFWfRZRdIWIHGe6DB9i2av1sxhkD6xQOMtjWpyKvuMrxSlOX-z-b2008");
-                var queryString = string.Format("?format={0}&apiToken={1}", "json", "7JK_GPoJc_IDML7XFsuwtvnMaTV1m9XQDQQ4D15CX9i1VgLMcoXqZ94nlwvHoj76EE30PK0lIs6jE1Mik2SyFWfRZRdIWIHGe6DB9i2av1sxhkD6xQOMtjWpyKvuMrxSlOX-z-b2008");
-                client.BaseAddress = new Uri("https://api.ubiquity.co.nz/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                var r = client.PostAsync()
-
-                var response = client.PostAsync("database/contacts/import/file" + queryString, new StringContent("{ Data to be posted }"), "application/json").Result;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var responseBody = response.Content.ReadAsStringAsync().Result;
-                    // Successful: parse json/xml from responseBody and proceed
-                }
-                else
-                {
-                    // Failed: logic that handles unsuccessful response
-                }
-            }
-            return Ok();
-        }
-
     }
 }
