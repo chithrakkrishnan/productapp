@@ -17,6 +17,7 @@ namespace SuperMarket.API.Mapping
             CreateMap<SaveProductResource, Product>().ForMember(src => src.UnitOfMeasurement, 
                 opt => opt.MapFrom(src => (EUnitOfMeasurement)src.UnitOfMeasurement)); ;
             CreateMap<ProductsQueryResource, ProductsQuery>();
+            CreateMap<UserForRegisterResource, User>();
         }
     }
 }

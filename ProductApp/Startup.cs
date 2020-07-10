@@ -57,9 +57,11 @@ namespace SuperMarket.API
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
